@@ -1,14 +1,20 @@
 package models.gnats;
 
-public abstract class GnatFactory {
+public class GnatFactory {
 
-    public void createGnat(){
 
+    public Gnat createGnat(GnatTypes type) {
+        Gnat gnat;
+
+        switch (type) {
+            case Buzzing -> {gnat = new BuzzingGnat();
+            }
+            case Stinging -> {gnat = new StingingGnat();
+            }
+            case Malarian -> {gnat = new MalarianGnat();
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + type);
+        }
+        return gnat;
     }
 }
-
-//        switch (type){
-//                case BUZZING -> {hp = 2; points = 10;}
-//                case STINGING -> {hp = 3; points = 25;}
-//                case MALARIAN -> {hp = 6; points = 75;}
-//                }
