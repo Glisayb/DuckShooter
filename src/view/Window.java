@@ -4,17 +4,17 @@ import javax.swing.*;
 
 public class Window extends JFrame implements Runnable {
 
+    MyPanel panel;
+
     public Window() {
 
-        JPanel panel = new JPanel();
+        panel = new MyPanel();
 
         add(panel);
-        setSize(640,480);
+        pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
-        run();
 
     }
 
