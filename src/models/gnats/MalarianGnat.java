@@ -2,12 +2,8 @@ package models.gnats;
 
 public class MalarianGnat extends Gnat{
     GnatTypes type = GnatTypes.Malarian;
-    int hp;
-    int points;
 
-    public MalarianGnat(){
-        hp = 6;
-        points = 75;
+    public MalarianGnat(int hp, int points){
+        super(hp, points);
     }
-
 }

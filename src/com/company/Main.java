@@ -9,10 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-
         ExecutorService service = Executors.newFixedThreadPool(10);
-        service.submit((Runnable) new Window());
-
+        service.submit(new Window());
 
     }
 }

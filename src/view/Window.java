@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-public class Window extends JFrame {
+public class Window extends JFrame implements Runnable {
 
     public Window() {
 
@@ -13,6 +13,13 @@ public class Window extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        run();
+
+    }
+
+    @Override
+    public void run() {
 
     }
 }

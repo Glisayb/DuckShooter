@@ -1,13 +1,9 @@
 package models.gnats;
 
-public abstract class Gnat {
-    GnatTypes type;
-    int hp;
-    int points;
+public class Gnat extends Insect{
 
-    public Gnat(){}
-
-    public void reduceHp(){
-        hp--;
+    public Gnat(int hp, int points){
+        super(hp, points);
     }
+
 }
