@@ -10,10 +10,13 @@ public class Gnat extends Insect implements IFilterImage {
     double ySpawn = (double) Math.random();
     double movingDistortion = Math.random();
     boolean startLeft = (Math.random() > 0.6);
-    String path = (startLeft ? pathLeft : pathRight);
+    String path;
 
-    public Gnat(int hp, int points) {
+    public Gnat(int hp, int points, String pathLeft, String pathRight) {
         super(hp, points);
+        this.pathLeft = pathLeft;
+        this.pathRight = pathRight;
+        this.path = (startLeft ? pathLeft : pathRight);
     }
 
     public Image getImage() {
