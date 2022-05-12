@@ -11,7 +11,6 @@ public class GnatFactory {
         Gnat gnat;
 
         int y;
-        int x;
 
         switch (level) {
             case NUTS -> y=0;
@@ -21,13 +20,12 @@ public class GnatFactory {
         }
 
         switch (type) {
-            case Buzzing -> x=0;
-            case Stinging -> x=1;
-            case Malarian -> x=2;
+            case Buzzing -> gnat = new BuzzingGnat(hp[y][0],points[y][0]);
+            case Stinging -> gnat = new StingingGnat(hp[y][1],points[y][1]);
+            case Malarian -> gnat = new MalarianGnat(hp[y][2],points[y][2]);
             default -> throw new IllegalStateException("Unexpected value: " + type);
         }
 
-        gnat = new Gnat(hp[y][x],points[y][x]);
         return gnat;
     }
 }

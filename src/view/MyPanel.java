@@ -49,7 +49,7 @@ public class MyPanel extends JPanel implements ActionListener {
         Graphics2D gui2d = (Graphics2D) gui;
         gui2d.drawImage(background,0,0,null);
         if (gnats.isEmpty() == false) {
-            gui2d.drawImage(gnats.get(1).getImage(), x, y, null);
+            gui2d.drawImage(gnat1, x, y, null);
         }
         gui2d.drawString("21:37",getWidth()-30,15);
         System.out.println(gnats.size());
