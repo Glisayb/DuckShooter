@@ -13,4 +13,5 @@ public abstract class Insect {
     public void reduceHp(){
         hp--;
     }
+
 }

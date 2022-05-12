@@ -14,11 +14,6 @@ public class BuzzingGnat extends Gnat{
     }
 
     @Override
-    public void setImage(String path) {
-        super.setImage(path);
-    }
-
-    @Override
     public Image getImage() {
         return super.getImage();
     }
