@@ -12,7 +12,7 @@ import java.util.Random;
 public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
     final int panelWidth = 640;
-    final int panelHight = 450;
+    final int panelHight = 420;
     Image background;
     Image gnat1;
     Timer timer;
@@ -21,7 +21,10 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     int x;
     int y;
     int n = (int) (Math.random()*10);
+    int licznik = 0;
     int spawnRatio;
+    int delay = 100;
+    String time;
 
     MyPanel(){
 
@@ -30,7 +33,7 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
         gnat1 = IFilterImage.filterImage("komar1right.png");
 
-        timer = new Timer(100,this);
+        timer = new Timer(delay,this);
         timer.start();
         y = (int) (Math.random()*400);
 
@@ -38,17 +41,16 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
     public void paint(Graphics gui) {
         var rand = new Random();
-        var gnats = Main.gnats;
 
-        Image gnat3 = gnats.get(rand.nextInt(gnats.size()-1)).getImage();
+        Image gnat3 = Main.gnats.get(rand.nextInt(Main.gnats.size()-1)).getImage();
 
         Graphics2D gui2d = (Graphics2D) gui;
         gui2d.drawImage(background,0,0,null);
-        if (gnats.isEmpty() == false) {
+        if (Main.gnats.isEmpty() == false) {
             gui2d.drawImage(gnat1, x, y, null);
         }
-        gui2d.drawString("21:37",getWidth()-30,15);
-        System.out.println(gnats.size());
+        gui2d.drawString(time,getWidth()-30,15);
+        System.out.println(Main.gnats.size());
 
     }
 
@@ -58,8 +60,15 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
         x = x + xVelo;
         y = y + (n%20-10)*yVelo;
         n++;
+        licznik++;
+        time = (licznik/60000*delay+":"+licznik/1000*delay);
         repaint();
     }
 
-
+    public int getPanelWidth() {
+        return panelWidth;
+    }
+    public int getPanelHight() {
+        return panelHight;
+    }
 }
