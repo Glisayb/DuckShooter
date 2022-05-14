@@ -31,7 +31,7 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
         this.setPreferredSize(new Dimension(panelWidth,panelHight));
         background = new ImageIcon("jezioro1.jpeg").getImage();
 
-        gnat1 = IFilterImage.filterImage("komar1right.png");
+        gnat1 = IFilterImage.filterImage(Main.gnats.get(0).getPath());
 
         timer = new Timer(delay,this);
         timer.start();
@@ -46,23 +46,32 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
         Graphics2D gui2d = (Graphics2D) gui;
         gui2d.drawImage(background,0,0,null);
-        if (Main.gnats.isEmpty() == false) {
-            gui2d.drawImage(gnat1, x, y, null);
+        if (!Main.gnats.isEmpty()) {
+            gui2d.drawImage(gnat1, Main.gnats.get(0).getX(), Main.gnats.get(0).getY(), null);
         }
         gui2d.drawString(time,getWidth()-30,15);
-        System.out.println(Main.gnats.size());
+        gui2d.drawString("Lives : "+Main.lives.getLives(),getWidth()-160,15);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        x = x + xVelo;
-        y = y + (n%20-10)*yVelo;
+        Main.gnats.get(0).moveGnat(n);
+        if (0>Main.gnats.get(0).getX() || Main.gnats.get(0).getX()>panelWidth){
+            Main.gnats.get(0).gnatSurvived(Main.gnats.get(0));
+        }
+        if (Main.lives.getLives() <= 0){
+            timer.stop();
+        }
+
         n++;
         licznik++;
         time = (licznik/60000*delay+":"+licznik/1000*delay);
         repaint();
+//        x = x + xVelo;
+//        y = y + (n%20-10)*yVelo;
+
     }
 
     public int getPanelWidth() {

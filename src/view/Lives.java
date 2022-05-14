@@ -2,8 +2,7 @@ package view;
 
 public class Lives {
 
-    int lives ;
-    String path;
+    private int lives ;
 
     public Lives(int lives){
        this.lives = lives;
@@ -11,5 +10,9 @@ public class Lives {
 
     public void reduceLives() {
         this.lives --;
+    }
+
+    public int getLives() {
+        return lives;
     }
 }
