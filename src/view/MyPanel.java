@@ -16,9 +16,6 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     Image background;
     Image gnat1;
     Timer timer;
-    int xVelo = 5;
-    int yVelo = 1;
-    int x;
     int y;
     int n = (int) (Math.random()*10);
     int licznik = 0;
@@ -42,8 +39,6 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     public void paint(Graphics gui) {
         var rand = new Random();
 
-        Image gnat3 = Main.gnats.get(rand.nextInt(Main.gnats.size()-1)).getImage();
-
         Graphics2D gui2d = (Graphics2D) gui;
         gui2d.drawImage(background,0,0,null);
         if (!Main.gnats.isEmpty()) {
@@ -58,7 +53,7 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     public void actionPerformed(ActionEvent e) {
 
         Main.gnats.get(0).moveGnat(n);
-        if (0>Main.gnats.get(0).getX() || Main.gnats.get(0).getX()>panelWidth){
+        if (-200>Main.gnats.get(0).getX() || Main.gnats.get(0).getX()>panelWidth){
             Main.gnats.get(0).gnatSurvived(Main.gnats.get(0));
         }
         if (Main.lives.getLives() <= 0){

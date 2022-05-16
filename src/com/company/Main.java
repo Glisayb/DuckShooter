@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 public class Main {
 
     public static ArrayList<Gnat> gnats = new ArrayList<>();
-    public static Lives lives = new Lives(3);
+    public static Lives lives = new Lives(5);
     public static Points points = new Points();
 
 

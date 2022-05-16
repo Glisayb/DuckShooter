@@ -12,6 +12,7 @@ public class Window extends JFrame implements Runnable {
 
         add(panel);
         pack();
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
