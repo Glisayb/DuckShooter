@@ -1,13 +1,14 @@
 package view;
 
 import com.company.Main;
+import models.gnats.Gnat;
 import models.gnats.IFilterImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
+
 
 public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
@@ -19,7 +20,6 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     int y;
     int n = (int) (Math.random()*10);
     int licznik = 0;
-    int spawnRatio;
     int delay = 100;
     String time;
 
@@ -30,6 +30,7 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
 
         gnat1 = IFilterImage.filterImage(Main.gnats.get(0).getPath());
 
+
         timer = new Timer(delay,this);
         timer.start();
         y = (int) (Math.random()*400);
@@ -37,24 +38,31 @@ public class MyPanel extends JPanel implements ActionListener, IFilterImage {
     }
 
     public void paint(Graphics gui) {
-        var rand = new Random();
 
         Graphics2D gui2d = (Graphics2D) gui;
         gui2d.drawImage(background,0,0,null);
-        if (!Main.gnats.isEmpty()) {
-            gui2d.drawImage(gnat1, Main.gnats.get(0).getX(), Main.gnats.get(0).getY(), null);
+        for(Gnat gnat : Main.gnats) {
+            if (gnat.isActive()) {
+                gui2d.drawImage(gnat1, gnat.getX(), gnat.getY(), null);
+            }
         }
         gui2d.drawString(time,getWidth()-30,15);
         gui2d.drawString("Lives : "+Main.lives.getLives(),getWidth()-160,15);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         Main.gnats.get(0).moveGnat(n);
-        if (-200>Main.gnats.get(0).getX() || Main.gnats.get(0).getX()>panelWidth){
-            Main.gnats.get(0).gnatSurvived(Main.gnats.get(0));
+        for(Gnat gnat : Main.gnats) {
+            if (gnat.isActive()) {
+                gnat.moveGnat(n);
+            }
+        }
+        for(Gnat gnat : Main.gnats) {
+            if (-210 > gnat.getX() || gnat.getX() > panelWidth) {
+                Main.gnats.get(0).gnatSurvived(Main.gnats.get(0));
+            }
         }
         if (Main.lives.getLives() <= 0){
             timer.stop();

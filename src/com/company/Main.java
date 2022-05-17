@@ -9,6 +9,7 @@ import view.Points;
 import view.Window;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,6 +32,17 @@ public class Main {
                     gnats.add(mamry.createGnat(GnatTypes.Buzzing, Difficulties.NUTS));
             }
         });
+//        service.submit(() -> {
+//            while (!gnats.isEmpty()) {
+//                var rand = new Random();
+//                gnats.get(rand.nextInt(gnats.size()-1)).setActive();
+//                try {
+//                    Thread.sleep(1500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
         service.submit(new Window());
 
